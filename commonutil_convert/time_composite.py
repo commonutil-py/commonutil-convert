@@ -3,7 +3,7 @@
 
 import re
 import datetime
-from collections import Sequence
+from collections.abc import Sequence
 
 from commonutil_convert.primitive import to_integer
 
@@ -108,9 +108,10 @@ def to_datetime(v, default_value=None):
 		return v
 	if isinstance(v, (int, float)):
 		return datetime.datetime.fromtimestamp(v)
+	r = None
 	if isinstance(v, str):
 		r = _to_datetime_for_string(v)
-	if isinstance(v, Sequence):
+	elif isinstance(v, Sequence):
 		r = _to_datetime_for_sequence(v)
 	if r is not None:
 		return r
