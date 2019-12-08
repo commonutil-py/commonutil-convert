@@ -1,9 +1,9 @@
 # -*- coding: utf-8 -*-
 """ 日期時間物件轉換輔助函式 / Value convert function for time related object """
 
+from typing import Any, Optional, Sequence
 import re
 import datetime
-from collections.abc import Sequence
 
 from commonutil_convert.primitive import to_integer
 
@@ -14,7 +14,7 @@ _DATETIME_REGEX_yyyymmddhhmmss = re.compile(r'([0-9]{4})-?([0-9]{2})-?([0-9]{2})
 _DATETIME_REGEX_hhmmoffset = re.compile(r'([-+]?)([0-9]{2})([0-9]{2})?')
 
 
-def _to_datetime_for_string(v):
+def _to_datetime_for_string(v: str) -> Optional[datetime.datetime]:
 	v = v.strip()
 	if v in (
 			"utc-now",
@@ -59,7 +59,7 @@ def _to_datetime_for_string(v):
 	return None
 
 
-def _to_datetime_for_sequence(v):
+def _to_datetime_for_sequence(v: Sequence[Any]) -> Optional[datetime.datetime]:
 	year = None
 	month = 1
 	day = 1
@@ -80,8 +80,7 @@ def _to_datetime_for_sequence(v):
 	return None if (year is None) else datetime.datetime(year, month, day, hour, minute, second)
 
 
-def to_datetime(v, default_value=None):
-	# type: (Any, Optional[datetime.datetime]) -> Optional[datetime.datetime]
+def to_datetime(v: Any, default_value: Optional[datetime.datetime] = None) -> Optional[datetime.datetime]:
 	"""
 	將輸入值轉換為時間格式，當輸入值為 None 或是無法轉換的物件時傳回 None
 

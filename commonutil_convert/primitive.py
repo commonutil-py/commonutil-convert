@@ -1,12 +1,12 @@
 # -*- coding: utf-8 -*-
 """ 基本型態值轉換輔助函式值 / Value convert functions for primitive types """
 
+from typing import Any, Optional
 import logging
 _log = logging.getLogger(__name__)
 
 
-def to_text(v, default_value=None):
-	# type: (Any, Optional[str]) -> Optional[str]
+def to_text(v: Any, default_value: Optional[str] = None) -> Optional[str]:
 	"""
 	將輸入值轉換為字串，當輸入值為 None 或空字串或是無法轉換的物件時傳回 None
 
@@ -39,8 +39,7 @@ def to_text(v, default_value=None):
 	return default_value
 
 
-def to_integer(v, default_value=None):
-	# type: (Any, Optional[int]) -> Optional[int]
+def to_integer(v: Any, default_value: Optional[int] = None) -> Optional[int]:
 	"""
 	將輸入值轉換為整數，當輸入值為 None 或是無法轉換的物件時傳回 None
 
@@ -63,8 +62,7 @@ def to_integer(v, default_value=None):
 	return default_value
 
 
-def to_float(v, default_value=None):
-	# type: (Any, Optional[float]) -> Optional[float]
+def to_float(v: Any, default_value: Optional[float] = None) -> Optional[float]:
 	"""
 	將輸入值轉換為浮點數，當輸入值為 None 或是無法轉換的物件時傳回 None
 
@@ -87,8 +85,7 @@ def to_float(v, default_value=None):
 	return default_value
 
 
-def to_bool(v, default_value=None):
-	# type: (Any, Optional[bool]) -> Optional[bool]
+def to_bool(v: Any, default_value: Optional[bool] = None) -> Optional[bool]:
 	"""
 	將輸入值轉換為布林值，當輸入值為 None 或是無法轉換的物件時傳回 None
 

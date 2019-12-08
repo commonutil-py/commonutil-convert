@@ -1,11 +1,11 @@
 # -*- coding: utf-8 -*-
 """ UUID 物件轉換輔助函式 / Value convert function for UUID object """
 
+from typing import Any, Optional
 from uuid import UUID
 
 
-def to_uuid(v, default_value=None):
-	# type: (Any, Optional[uuid.UUID]) -> Optional[uuid.UUID]
+def to_uuid(v: Any, default_value: Optional[UUID] = None) -> Optional[UUID]:
 	"""
 	將輸入值轉換為 UUID 物件
 

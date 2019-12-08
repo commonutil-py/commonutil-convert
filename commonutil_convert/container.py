@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 """ 容器物件轉換輔助函式 / Value convert function for containers """
 
-from collections import Iterable, Mapping
+from typing import Any, Callable, Optional, List, Dict, Iterable, Mapping
 
 from commonutil_convert.primitive import to_text
 
@@ -9,8 +9,7 @@ import logging
 _log = logging.getLogger(__name__)
 
 
-def to_list(v, element_converter, default_value=None):
-	# type: (Any, Callable[[Any], Any], Optional[Any]) -> Optional[List[Any]]
+def to_list(v: Any, element_converter: Callable[[Any], Any], default_value: Optional[Any] = None) -> Optional[List[Any]]:
 	"""
 	將輸入值轉換為串列，各輸入值透過傳入的轉換函式進行轉換
 
@@ -40,8 +39,10 @@ def to_list(v, element_converter, default_value=None):
 	return result if result else default_value
 
 
-def to_dict(v, element_converter, key_converter=None, default_value=None):
-	# type: (Any, Callable[[Any], Any], Optional[Callable[[Any], Any]], Optional[Any]) -> Optional[Dict[Any, Any]]
+def to_dict(v: Any,
+			element_converter: Callable[[Any], Any],
+			key_converter: Optional[Callable[[Any], Any]] = None,
+			default_value: Optional[Any] = None) -> Optional[Dict[Any, Any]]:
 	"""
 	將輸入值轉換為字典，各輸入值透過傳入的轉換函式進行轉換
 
