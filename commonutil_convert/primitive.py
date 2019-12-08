@@ -111,9 +111,9 @@ def to_bool(v, default_value=None):
 		if isinstance(v, str):
 			if not v:
 				return False
-			return True if (v[0] in ('Y', 'y', 'T', 't', '1', '+')) else False
+			return (v[0] in ('Y', 'y', 'T', 't', '1', '+'))
 		if isinstance(v, (int, float)):
-			return True if (int(v) > 0) else False
+			return (int(v) > 0)
 		return bool(v)
 	except Exception:
 		_log.info("cannot convert input (%r) to boolean @[commonutil_convert.primitive.to_bool]", v)
