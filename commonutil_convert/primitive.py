@@ -28,7 +28,7 @@ def to_text(v: Any, default_value: Optional[str] = None) -> Optional[str]:
 		r = str(v, 'utf-8', 'ignore')
 	else:
 		try:
-			r = str(str(v), 'utf-8', 'ignore')
+			r = str(v)
 		except Exception:
 			_log.info("cannot convert input (%r) to string @[commonutil_convert.primitive.to_text]", v)
 			r = None
