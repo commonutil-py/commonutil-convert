@@ -1,15 +1,19 @@
 # -*- coding: utf-8 -*-
-""" 容器物件轉換輔助函式 / Value convert function for containers """
+"""
+容器物件轉換輔助函式 / Value convert function for containers
+"""
 
-from typing import Any, Callable, Optional, List, Dict, Iterable, Mapping
+import logging
+from typing import Any, Callable, Dict, Iterable, List, Mapping, Optional
 
 from commonutil_convert.primitive import to_text
 
-import logging
 _log = logging.getLogger(__name__)
 
 
-def to_list(v: Any, element_converter: Callable[[Any], Any], default_value: Optional[Any] = None) -> Optional[List[Any]]:
+def to_list(
+	v: Any, element_converter: Callable[[Any], Any], default_value: Optional[Any] = None
+) -> Optional[List[Any]]:
 	"""
 	將輸入值轉換為串列，各輸入值透過傳入的轉換函式進行轉換
 
@@ -27,7 +31,12 @@ def to_list(v: Any, element_converter: Callable[[Any], Any], default_value: Opti
 	if v is None:
 		return default_value
 	result = []
-	if (not isinstance(v, str)) and (not isinstance(v, bytes)) and (not isinstance(v, Mapping)) and isinstance(v, Iterable):
+	if (
+		(not isinstance(v, str))
+		and (not isinstance(v, bytes))
+		and (not isinstance(v, Mapping))
+		and isinstance(v, Iterable)
+	):
 		for e in v:
 			item = element_converter(e)
 			if item is not None:
@@ -39,10 +48,12 @@ def to_list(v: Any, element_converter: Callable[[Any], Any], default_value: Opti
 	return result if result else default_value
 
 
-def to_dict(v: Any,
-			element_converter: Callable[[Any], Any],
-			key_converter: Optional[Callable[[Any], Any]] = None,
-			default_value: Optional[Any] = None) -> Optional[Dict[Any, Any]]:
+def to_dict(
+	v: Any,
+	element_converter: Callable[[Any], Any],
+	key_converter: Optional[Callable[[Any], Any]] = None,
+	default_value: Optional[Any] = None,
+) -> Optional[Dict[Any, Any]]:
 	"""
 	將輸入值轉換為字典，各輸入值透過傳入的轉換函式進行轉換
 

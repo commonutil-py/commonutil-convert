@@ -1,8 +1,11 @@
 # -*- coding: utf-8 -*-
-""" 基本型態值轉換輔助函式值 / Value convert functions for primitive types """
+"""
+基本型態值轉換輔助函式值 / Value convert functions for primitive types
+"""
 
-from typing import Any, Optional
 import logging
+from typing import Any, Optional
+
 _log = logging.getLogger(__name__)
 
 
@@ -25,12 +28,15 @@ def to_text(v: Any, default_value: Optional[str] = None) -> Optional[str]:
 	if isinstance(v, str):
 		r = v
 	elif isinstance(v, bytes):
-		r = str(v, 'utf-8', 'ignore')
+		r = str(v, "utf-8", "ignore")
 	else:
 		try:
 			r = str(v)
 		except Exception:
-			_log.info("cannot convert input (%r) to string @[commonutil_convert.primitive.to_text]", v)
+			_log.info(
+				"cannot convert input (%r) to string @[commonutil_convert.primitive.to_text]",
+				v,
+			)
 			r = None
 	if r is not None:
 		r = r.strip()
@@ -58,7 +64,10 @@ def to_integer(v: Any, default_value: Optional[int] = None) -> Optional[int]:
 		r = int(v)
 		return r
 	except Exception:
-		_log.info("cannot convert input (%r) to integer @[commonutil_convert.primitive.to_integer]", v)
+		_log.info(
+			"cannot convert input (%r) to integer @[commonutil_convert.primitive.to_integer]",
+			v,
+		)
 	return default_value
 
 
@@ -81,7 +90,10 @@ def to_float(v: Any, default_value: Optional[float] = None) -> Optional[float]:
 		r = float(v)
 		return r
 	except Exception:
-		_log.info("cannot convert input (%r) to float @[commonutil_convert.primitive.to_float]", v)
+		_log.info(
+			"cannot convert input (%r) to float @[commonutil_convert.primitive.to_float]",
+			v,
+		)
 	return default_value
 
 
@@ -104,14 +116,17 @@ def to_bool(v: Any, default_value: Optional[bool] = None) -> Optional[bool]:
 		if isinstance(v, bool):
 			return v
 		if isinstance(v, bytes):
-			v = str(v, 'utf-8', 'ignore')
+			v = str(v, "utf-8", "ignore")
 		if isinstance(v, str):
 			if not v:
 				return False
-			return (v[0] in ('Y', 'y', 'T', 't', '1', '+'))
+			return v[0] in ("Y", "y", "T", "t", "1", "+")
 		if isinstance(v, (int, float)):
-			return (int(v) > 0)
+			return int(v) > 0
 		return bool(v)
 	except Exception:
-		_log.info("cannot convert input (%r) to boolean @[commonutil_convert.primitive.to_bool]", v)
+		_log.info(
+			"cannot convert input (%r) to boolean @[commonutil_convert.primitive.to_bool]",
+			v,
+		)
 	return default_value

@@ -1,5 +1,7 @@
 # -*- coding: utf-8 -*-
-""" UUID 物件轉換輔助函式 / Value convert function for UUID object """
+"""
+UUID 物件轉換輔助函式 / Value convert function for UUID object
+"""
 
 from typing import Any, Optional
 from uuid import UUID
